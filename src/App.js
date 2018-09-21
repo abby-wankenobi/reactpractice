@@ -8,7 +8,9 @@ class App extends Component {
     persons: [
       { name: "Abby", age: 28 },
       { name: "Zach", age: 30 }
-    ]
+    ],
+    otherState: 'some other value',
+    showPersons: false
   }
 
   switchNameHandler = () => {
@@ -30,6 +32,10 @@ class App extends Component {
      })
   }
 
+  togglePersonHandler = () => {
+
+  }
+
   render() {
 
     const style = {
@@ -43,9 +49,14 @@ class App extends Component {
     return (
       <div className="App">
         <h1>React App</h1>
-        <button style={style} onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} change={this.nameChangedHandler}/>
+        <button style={style} onClick={this.togglePersonHandler}>Switch Name</button>
+        {
+          this.state.showPerson ?
+          <div>
+            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} click={this.switchNameHandler}/>
+            <Person name={this.state.persons[1].name} age={this.state.persons[1].age} change={this.nameChangedHandler}/>
+          </div> : null
+        }
       </div>
     );
   }
